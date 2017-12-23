@@ -47,7 +47,7 @@
             "cwd": "${workspaceRoot}",
             "args": [
                 "-l",
-                "${workspaceRoot}/azurite-testdrive"
+                "/temp"
             ],
             "skipFiles": [
                 "node_modules/**/*.js"
