@@ -49,6 +49,9 @@
                 "-l",
                 "/temp"
             ],
+            "env": {
+                "NO_CLUSTER": "true"
+            },
             "skipFiles": [
                 "node_modules/**/*.js"
             ]
