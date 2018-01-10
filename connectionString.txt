@@ -1,8 +1,8 @@
 DefaultEndpointsProtocol=http;AccountName=localselect;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://localselect.blob.core.windows.net:10000;TableEndpoint=http://localselect.blob.core.windows.net:10000;QueueEndpoint=http://localselect.blob.core.windows.net:10000;
 DefaultEndpointsProtocol=http;AccountName=remoteselect;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://remoteselect.blob.core.windows.net:10000;TableEndpoint=http://remoteselect.blob.core.windows.net:10000;QueueEndpoint=http://remoteselect.blob.core.windows.net:10000;
 
-curl 'http://localselect.blob.core.windows.net:10000/testcontainer/000000.log?$select=fred' -Headers @{"x-ms-select-source-type"="CSV"; "x-ms-select-source-column-delim"=";"} 
+curl 'http://localselect.blob.core.windows.net:10000/testcontainer/000000.log?$select='\''_col1'\''' -Headers @{"x-ms-select-source-type"="CSV"; "x-ms-select-source-column-delim"=";"} 
 $resp = curl 'http://localselect.blob.core.windows.net:10000/testcontainer/000000.log?$select=_col1,_col2&$filter=_col1+eq+''2017-12-19T20:04:40.9124266Z''+or+_col1+eq+''2017-12-19T20:04:57.1635654Z''' -Headers @{"x-ms-select-source-type"="CSV"; "x-ms-select-source-column-delim"=";"}
 
-curl -H x-ms-select-source-type "CSV" -H x-ms-select-source-column-delim ";" "http://localselect.blob.core.windows.net:10000/testcontainer/000000.log?$select=_col1,_col2&$filter=_col1+eq+'2017-12-19T20:04:40.9124266Z'+or+_col1+eq+'2017-12-19T20:04:57.1635654Z'"
+curl -H "x-ms-select-source-type:CSV" -H "x-ms-select-source-column-delim:;" 'http://localselect.blob.core.windows.net:10000/testcontainer/000000.log?$select=_col1,_col2&$filter=_col1+eq+datetime'\''2017-12-19T20:10:43.3411494'\'''
 curl -H "x-ms-select-source-type:CSV" -H "x-ms-select-source-column-delim:;" 'http://remoteselect.blob.core.windows.net:10000/testcontainer/000000.log?$select=_col1,_col2&$filter=_col2+eq+'\''GetBlob'\''' > /dev/null
